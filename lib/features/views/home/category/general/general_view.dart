@@ -33,7 +33,7 @@ class _GeneralViewState extends State<GeneralView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 0.05 * width,
+          horizontal: 0.02 * width,
           vertical: 0.02 * height,
         ),
         child: FutureBuilder(
