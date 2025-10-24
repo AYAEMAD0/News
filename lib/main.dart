@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/theme/app_theme.dart';
 import 'package:news/features/views/home/home_view.dart';
-
 import 'core/routing/routes.dart';
 
 void main() {
@@ -19,6 +18,7 @@ class MyApp extends StatelessWidget {
       },
       theme: AppTheme.themeLight,
       darkTheme: AppTheme.themeDark,
+      themeMode: ThemeMode.light,
      initialRoute: Routes.homeRouteName,
     );
   }
