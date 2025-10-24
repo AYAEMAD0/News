@@ -39,4 +39,14 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.gray,
   );
+  static TextStyle font24WhiteMedium = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryLight,
+  );
+  static TextStyle  font24BlackMedium = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryDark,
+  );
 }
