@@ -17,7 +17,8 @@ class AppTheme {
       labelMedium: TextStyles.font20BlackMedium,
       labelSmall: TextStyles.font14BlackMedium,
       labelLarge: TextStyles.font16BlackBold,
-      headlineLarge: TextStyles.font24BlackMedium
+      headlineMedium: TextStyles.font18LightMedium,
+      headlineLarge: TextStyles.font24BlackMedium,
     ),
     canvasColor: AppColors.primaryDark,
     cardColor: AppColors.grayLight,
@@ -37,7 +38,8 @@ class AppTheme {
       labelMedium: TextStyles.font20WhiteMedium,
       labelSmall: TextStyles.font14WhiteMedium,
       labelLarge: TextStyles.font16WhiteBold,
-      headlineLarge: TextStyles.font24WhiteMedium
+      headlineLarge: TextStyles.font24WhiteMedium,
+      headlineMedium: TextStyles.font18BlackMedium,
     ),
     canvasColor: AppColors.primaryLight,
     cardColor: AppColors.grayDark,

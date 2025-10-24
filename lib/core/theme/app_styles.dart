@@ -59,4 +59,15 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: AppColors.primaryLight,
   );
+  static TextStyle font18BlackMedium = GoogleFonts.tajawal(
+    fontSize: 18,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryDark,
+  );
+  static TextStyle font18LightMedium = GoogleFonts.tajawal(
+    fontSize: 18,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryLight,
+  );
+
 }

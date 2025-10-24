@@ -6,10 +6,17 @@ import 'package:news/provider/theme_provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 typedef OnCategoryItemClick = void Function(CategoryModel);
-class CategoryFragmentView extends StatelessWidget {
+
+class CategoryFragmentView extends StatefulWidget {
+  final OnCategoryItemClick onCategoryItemClick;
+  const CategoryFragmentView({super.key, required this.onCategoryItemClick});
+
+  @override
+  State<CategoryFragmentView> createState() => _CategoryFragmentViewState();
+}
+
+class _CategoryFragmentViewState extends State<CategoryFragmentView> {
   List<CategoryModel> model = [];
-  OnCategoryItemClick onCategoryItemClick;
-  CategoryFragmentView({super.key, required this.onCategoryItemClick});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,7 @@ class CategoryFragmentView extends StatelessWidget {
                 padding: EdgeInsets.only(top: 0.02 * height),
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    onCategoryItemClick(model[index]);
+                    widget.onCategoryItemClick(model[index]);
                   },
                   child: CategoryItem(model: model[index], index: index),
                 ),

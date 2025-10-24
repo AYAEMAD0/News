@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/api/api_manger.dart';
-import 'package:news/features/views/home/category_details/news/news_item.dart';
+import 'package:news/features/views/home/category_details/news/widget/news_item.dart';
 import 'package:news/model/source_response.dart';
 import '../../../../../core/widgets/error_api_widget.dart';
 import '../../../../../core/widgets/error_base_widget.dart';

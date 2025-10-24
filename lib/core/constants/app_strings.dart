@@ -10,4 +10,7 @@ class AppStrings {
   static const String theme='Theme';
   static const String light='Light';
   static const String dark='Dark';
+  static const String viewArticle='View Full Articles';
+  static const String noContent='No Content';
+  static const String errorLink='No article URL found';
 }
