@@ -29,7 +29,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: AppColors.primaryLight,
   );
-  static TextStyle font16BlackBold = GoogleFonts.tajawal(
+  static TextStyle  font16BlackBold = GoogleFonts.tajawal(
     fontSize: 16,
     fontWeight: FontWeightHelper.bold,
     color: AppColors.primaryDark,
@@ -38,6 +38,26 @@ class TextStyles {
     fontSize: 14,
     fontWeight: FontWeightHelper.medium,
     color: AppColors.gray,
+  );
+  static TextStyle font24WhiteMedium = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryLight,
+  );
+  static TextStyle  font24BlackMedium = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.medium,
+    color: AppColors.primaryDark,
+  );
+  static TextStyle  font24BlackBold = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.primaryDark,
+  );
+  static TextStyle  font20WhiteBold = GoogleFonts.tajawal(
+    fontSize: 20,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.primaryLight,
   );
   static TextStyle font18BlackMedium = GoogleFonts.tajawal(
     fontSize: 18,
