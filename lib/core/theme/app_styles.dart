@@ -49,4 +49,14 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.primaryDark,
   );
+  static TextStyle  font24BlackBold = GoogleFonts.tajawal(
+    fontSize: 24,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.primaryDark,
+  );
+  static TextStyle  font20WhiteBold = GoogleFonts.tajawal(
+    fontSize: 20,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.primaryLight,
+  );
 }

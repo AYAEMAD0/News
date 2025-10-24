@@ -13,4 +13,6 @@ class AppAsset {
   static const String sportsThemeDark="assets/images/pngs/sports_darkTheme.png";
   static const String technologyThemeLight="assets/images/pngs/technology_lightTheme.png";
   static const String technologyThemeDark="assets/images/pngs/technology_darkTheme.png";
+  static const String homeIcon="assets/images/svgs/home.svg";
+  static const String themeIcon="assets/images/svgs/theme.svg";
 }

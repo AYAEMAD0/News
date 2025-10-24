@@ -24,7 +24,6 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
           'general',
           style: Theme.of(context).textTheme.labelMedium,
         ),
-        leading: Icon(Icons.list_rounded, size: 25),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 0.02 * width),
