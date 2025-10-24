@@ -40,6 +40,8 @@ dependencies:
   cached_network_image: ^3.4.1
   get_time_ago: ^2.3.2
   flutter_svg: ^2.2.1
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

@@ -8,4 +8,6 @@ class AppStrings {
   static const String newsApp='News App';
   static const String goTOHome= 'Go To Home';
   static const String theme='Theme';
+  static const String light='Light';
+  static const String dark='Dark';
 }
