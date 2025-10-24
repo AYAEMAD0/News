@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news/features/views/home/category/general/widget/source_name.dart';
-import '../../../../../../model/source_response.dart';
+import 'package:news/features/views/home/category_details/news/news_widget.dart';
+import '../../../../../model/source_response.dart';
+import 'source_name.dart';
 
 class SourceTab extends StatefulWidget {
   final List<Sources> sourceList;
@@ -15,8 +16,6 @@ class _SourceTabState extends State<SourceTab> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: widget.sourceList.length,
       child: Column(
@@ -37,6 +36,7 @@ class _SourceTabState extends State<SourceTab> {
               );
             }).toList(),
           ),
+          Expanded(child: NewsWidget(source: widget.sourceList[selectedIndex])),
         ],
       ),
     );
