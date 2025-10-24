@@ -69,4 +69,5 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.primaryLight,
   );
+
 }
