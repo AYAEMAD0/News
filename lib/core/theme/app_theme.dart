@@ -17,6 +17,7 @@ class AppTheme {
       labelMedium: TextStyles.font20BlackMedium,
       labelSmall: TextStyles.font14BlackMedium,
       labelLarge: TextStyles.font16BlackBold,
+      headlineMedium: TextStyles.font18LightMedium
     ),
     canvasColor: AppColors.primaryDark,
   );
@@ -34,6 +35,7 @@ class AppTheme {
       labelMedium: TextStyles.font20WhiteMedium,
       labelSmall: TextStyles.font14WhiteMedium,
       labelLarge: TextStyles.font16WhiteBold,
+      headlineMedium: TextStyles.font18BlackMedium
     ),
     canvasColor: AppColors.primaryLight,
   );
