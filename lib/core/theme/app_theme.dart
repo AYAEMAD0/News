@@ -17,8 +17,11 @@ class AppTheme {
       labelMedium: TextStyles.font20BlackMedium,
       labelSmall: TextStyles.font14BlackMedium,
       labelLarge: TextStyles.font16BlackBold,
+      headlineLarge: TextStyles.font24BlackMedium
     ),
     canvasColor: AppColors.primaryDark,
+    cardColor: AppColors.grayLight,
+    dividerColor: AppColors.primaryLight,
   );
   static final ThemeData themeDark = ThemeData(
     scaffoldBackgroundColor: AppColors.primaryDark,
@@ -34,7 +37,10 @@ class AppTheme {
       labelMedium: TextStyles.font20WhiteMedium,
       labelSmall: TextStyles.font14WhiteMedium,
       labelLarge: TextStyles.font16WhiteBold,
+      headlineLarge: TextStyles.font24WhiteMedium
     ),
     canvasColor: AppColors.primaryLight,
+    cardColor: AppColors.grayDark,
+    dividerColor: AppColors.primaryDark,
   );
 }
