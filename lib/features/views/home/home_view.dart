@@ -4,6 +4,7 @@ import 'package:news/core/theme/app_colors.dart';
 import 'package:news/features/views/home/category_details/category_details_view.dart';
 import 'package:news/features/views/widgets/drawer_widget.dart';
 import 'package:news/model/category_model.dart';
+import '../../../core/routing/routes.dart';
 import 'category_fragment/category_fragment_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,6 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  CategoryModel? selectedCategory;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -28,19 +30,26 @@ class _HomeViewState extends State<HomeView> {
           style: Theme.of(context).textTheme.labelMedium,
         ),
         actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.03 * width),
-            child: Icon(Icons.search),
-          ),
+          selectedCategory == null
+              ? SizedBox.shrink()
+              : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 0.03 * width),
+                  child: IconButton(
+                    onPressed: () {
+                      //todo search
+                      Navigator.pushNamed(context, Routes.searchRouteName,);
+                    },
+                    icon: Icon(Icons.search),
+                  ),
+                ),
         ],
       ),
+
       body: selectedCategory == null
           ? CategoryFragmentView(onCategoryItemClick: onCategoryItemClick)
           : CategoryDetailsView(category: selectedCategory!),
     );
   }
-
-  CategoryModel? selectedCategory;
 
   void onCategoryItemClick(CategoryModel newCategory) {
     selectedCategory = newCategory;

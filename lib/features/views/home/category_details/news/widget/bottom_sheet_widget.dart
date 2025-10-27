@@ -59,7 +59,7 @@ class BottomSheetWidget extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).cardColor,
+                backgroundColor: Theme.of(context).dividerColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
