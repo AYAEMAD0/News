@@ -13,4 +13,7 @@ class AppStrings {
   static const String viewArticle='View Full Articles';
   static const String noContent='No Content';
   static const String errorLink='No article URL found';
+  static const String search='Search';
+  static const String searchError='Unknown API error';
+  static const String noResult='No Results';
 }

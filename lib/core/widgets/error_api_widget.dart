@@ -13,13 +13,16 @@ class ErrorApiWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Center(
-      child: Column(
-        spacing: 0.03 * height,
-        children: [
-          Text(message, style: Theme.of(context).textTheme.labelMedium),
-          ButtonTryAgain(onPressed: onPressed),
-        ],
+    return Padding(
+      padding: EdgeInsets.only(top: height*0.03),
+      child: Center(
+        child: Column(
+          spacing: 0.03 * height,
+          children: [
+            Text(message, style: Theme.of(context).textTheme.labelMedium),
+            ButtonTryAgain(onPressed: onPressed),
+          ],
+        ),
       ),
     );
   }

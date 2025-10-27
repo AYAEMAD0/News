@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:news/api/api_constants.dart';
 import 'package:news/api/api_endpoint.dart';
@@ -10,7 +9,7 @@ class ApiManger {
   static Future<SourceResponse> getSource(String categoryId) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiEndpoint.sourceApi, {
       "apiKey": ApiConstants.apiKey,
-      "category":categoryId
+      "category": categoryId,
     });
     try {
       var response = await http.get(url);
@@ -27,8 +26,27 @@ class ApiManger {
       "sources": sourceId,
       "apiKey": ApiConstants.apiKey,
     });
-    var response=await http.get(url);
-    var json =jsonDecode(response.body);
+    var response = await http.get(url);
+    var json = jsonDecode(response.body);
     return NewsResponse.fromJson(json);
+  }
+
+  static Future<NewsResponse> searchNews({
+    required String query,
+    String searchIn = "title,description,content",
+  }) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiEndpoint.newApi, {
+      "q": query,
+      "searchIn": searchIn,
+      "apiKey": ApiConstants.apiKey,
+    });
+
+    try {
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      return NewsResponse.fromJson(json);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
