@@ -36,7 +36,7 @@ class _SourceTabState extends State<SourceTab> {
               );
             }).toList(),
           ),
-          Expanded(child: NewsWidget(source: widget.sourceList[selectedIndex])),
+          Expanded(child: NewsWidget(key: ValueKey(widget.sourceList[selectedIndex].id),source: widget.sourceList[selectedIndex])),
         ],
       ),
     );
