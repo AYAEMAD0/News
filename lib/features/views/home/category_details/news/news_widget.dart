@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news/api/api_manger.dart';
-import 'package:news/model/news_response.dart';
+import 'package:news/core/widgets/loading_widget.dart';
 import 'package:news/model/source_response.dart';
+import 'package:provider/provider.dart';
+import '../../../../../core/widgets/error_api_widget.dart';
+import 'news_view_model.dart';
 import 'widget/news_item.dart';
 
 class NewsWidget extends StatefulWidget {
@@ -13,25 +15,7 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  List<News> articles = [];
-  int page = 1;
-  bool isLoading = false;
-  bool hasMore = true;
   final ScrollController scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    getNews();
-    scrollController.addListener(() {
-      if (scrollController.position.pixels >=
-          scrollController.position.maxScrollExtent &&
-          !isLoading &&
-          hasMore) {
-        getNews();
-      }
-    });
-  }
 
   @override
   void dispose() {
@@ -39,56 +23,63 @@ class _NewsWidgetState extends State<NewsWidget> {
     super.dispose();
   }
 
-  Future<void> getNews() async {
-    if (isLoading) return;
-    setState(() => isLoading = true);
-
-    final response = await ApiManger.getNewsBySourceId(
-      widget.source.id!,
-      page: page,
-      pageSize: 10,
-    );
-
-    if (response.status == 'ok') {
-      final newArticles = response.articles ?? [];
-      setState(() {
-        articles.addAll(newArticles);
-        isLoading = false;
-        if (newArticles.length < 10) hasMore = false;
-        page++;
-      });
-    } else {
-      setState(() => isLoading = false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    print("-------------------------------------------------");
-    print("Fetching news for ${widget.source.id} - page $page");
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    if (articles.isEmpty && isLoading) {
-      return Center(child: CircularProgressIndicator(color: Theme.of(context).canvasColor,));
-    }
-
-    return ListView.builder(
-      controller: scrollController,
-      itemCount: hasMore ? articles.length + 1 : articles.length,
-      itemBuilder: (context, index) {
-        if (index < articles.length) {
-          return NewsItem(news: articles[index]);
-        } else {
-          return  Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 0.04 * width,
-              vertical: 0.09 * height,
-            ),
-            child: Center(child: CircularProgressIndicator(color:Theme.of(context).canvasColor)),
-          );
-        }
+    return ChangeNotifierProvider(
+      create: (context) {
+        final viewModel = NewsViewModel();
+        viewModel.getNewsBySourceId(widget.source.id!);
+        scrollController.addListener(() {
+          if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent &&
+              !viewModel.isLoading &&
+              viewModel.hasMore) {
+            viewModel.getNewsBySourceId(widget.source.id!);
+          }
+        });
+        return viewModel;
       },
+      child: Consumer<NewsViewModel>(
+        builder: (context, data, child) {
+          if (data.errorMessage != null && data.newsList.isEmpty) {
+            return ErrorApiWidget(
+              message: data.errorMessage!,
+              onPressed: () {
+                data.getNewsBySourceId(widget.source.id!);
+              },
+            );
+          } else if (data.newsList.isEmpty && data.isLoading) {
+            return LoadingWidget();
+          } else {
+            return ListView.builder(
+              controller: scrollController,
+              itemCount: data.hasMore
+                  ? data.newsList.length + 1
+                  : data.newsList.length,
+              itemBuilder: (context, index) {
+                if (index < data.newsList.length) {
+                  return NewsItem(news: data.newsList[index]);
+                } else {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 0.04 * width,
+                      vertical: 0.09 * height,
+                    ),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Theme.of(context).canvasColor,
+                      ),
+                    ),
+                  );
+                }
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }
