@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/bloc/source/source_cubit.dart';
 import 'package:news/features/views/home/category_details/news/news_widget.dart';
 import '../../../../../model/source_response.dart';
 import 'source_name.dart';
@@ -12,33 +14,43 @@ class SourceTab extends StatefulWidget {
 }
 
 class _SourceTabState extends State<SourceTab> {
-  int selectedIndex = 0;
-
+  SourceCubit viewModel = SourceCubit();
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: widget.sourceList.length,
-      child: Column(
-        children: [
-          TabBar(
-            isScrollable: true,
-            tabAlignment: TabAlignment.start,
-            dividerColor: Theme.of(context).scaffoldBackgroundColor,
-            indicatorColor: Theme.of(context).canvasColor,
-            onTap: (value) {
-              selectedIndex = value;
-              setState(() {});
-            },
-            tabs: widget.sourceList.map((source) {
-              return SourceName(
-                sources: source,
-                isSelected: selectedIndex == widget.sourceList.indexOf(source),
-              );
-            }).toList(),
+    return BlocBuilder(
+      bloc: viewModel,
+      builder: (context, state) {
+        int index = viewModel.selectedIndex;
+        return DefaultTabController(
+          length: widget.sourceList.length,
+          child: Column(
+            children: [
+              TabBar(
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                dividerColor: Theme.of(context).scaffoldBackgroundColor,
+                indicatorColor: Theme.of(context).canvasColor,
+                onTap: (value) {
+                  //todo change index
+                  viewModel.changeIndex(value);
+                },
+                tabs: widget.sourceList.map((source) {
+                  return SourceName(
+                    sources: source,
+                    isSelected: index == widget.sourceList.indexOf(source),
+                  );
+                }).toList(),
+              ),
+              Expanded(
+                child: NewsWidget(
+                  key: ValueKey(widget.sourceList[index].id),
+                  source: widget.sourceList[index],
+                ),
+              ),
+            ],
           ),
-          Expanded(child: NewsWidget(key: ValueKey(widget.sourceList[selectedIndex].id),source: widget.sourceList[selectedIndex])),
-        ],
-      ),
+        );
+      },
     );
   }
 }

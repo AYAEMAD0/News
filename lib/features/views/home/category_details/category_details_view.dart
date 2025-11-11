@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news/api/api_manger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/bloc/source/source_cubit.dart';
+import 'package:news/bloc/source/source_state.dart';
 import 'package:news/core/widgets/error_api_widget.dart';
 import 'package:news/core/widgets/loading_widget.dart';
 import 'package:news/model/category_model.dart';
-import 'package:news/model/source_response.dart';
-import '../../../../core/widgets/error_base_widget.dart';
 import 'widget/source_tab.dart';
 
 class CategoryDetailsView extends StatefulWidget {
@@ -16,6 +16,14 @@ class CategoryDetailsView extends StatefulWidget {
 }
 
 class _CategoryDetailsViewState extends State<CategoryDetailsView> {
+  SourceCubit viewModel = SourceCubit();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.getSource(widget.category.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -25,31 +33,22 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
         horizontal: 0.02 * width,
         vertical: 0.02 * height,
       ),
-      child: FutureBuilder(
-        future: ApiManger.getSource(widget.category.id),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingWidget();
-          } else if (snapshot.hasError) {
-            return ErrorBaseWidget(
-              onPressed: () {
-                //todo reload
-                ApiManger.getSource(widget.category.id);
-                setState(() {});
-              },
-            );
-          } else if (snapshot.data?.status != 'ok') {
+      child: BlocBuilder<SourceCubit, SourceState>(
+        bloc: viewModel,
+        builder: (context, state) {
+          if (state is SuccessState) {
+            return SourceTab(sourceList: state.sourceList!);
+          } else if (state is ErrorState) {
             return ErrorApiWidget(
               onPressed: () {
                 //todo reload
-                ApiManger.getSource(widget.category.id);
-                setState(() {});
+                viewModel.getSource(widget.category.id);
               },
-              message: snapshot.data!.message!,
+              message: state.errorMessage.toString(),
             );
+          } else {
+            return LoadingWidget();
           }
-          List<Sources>? data = snapshot.data?.sources;
-          return SourceTab(sourceList: data!);
         },
       ),
     );
