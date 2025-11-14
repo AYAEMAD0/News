@@ -1,5 +1,4 @@
 import '../../model/news_response.dart';
-import '../../model/source_response.dart';
 
 abstract class NewsState {}
 

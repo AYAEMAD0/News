@@ -4,6 +4,7 @@ import 'package:news/bloc/source/source_cubit.dart';
 import 'package:news/bloc/source/source_state.dart';
 import 'package:news/core/widgets/error_api_widget.dart';
 import 'package:news/core/widgets/loading_widget.dart';
+import 'package:news/di/di.dart';
 import 'package:news/model/category_model.dart';
 import 'widget/source_tab.dart';
 
@@ -16,7 +17,7 @@ class CategoryDetailsView extends StatefulWidget {
 }
 
 class _CategoryDetailsViewState extends State<CategoryDetailsView> {
-  SourceCubit viewModel = SourceCubit();
+  SourceCubit viewModel = SourceCubit(sourceRepository: injectSourceRepository());
   @override
   void initState() {
     // TODO: implement initState

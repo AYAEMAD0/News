@@ -1,15 +1,24 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/api/api_manger.dart';
 import 'package:news/bloc/source/source_state.dart';
+import 'package:news/data/repository/source/repository/source_repository.dart';
 
 class SourceCubit extends Cubit<SourceState> {
   //todo hold data - handle logic
-  int selectedIndex=0;
-  SourceCubit() : super(InitialState());
+  int selectedIndex = 0;
+  SourceRepository sourceRepository;
+  // late SourceRemoteDataSource sourceRemoteDataSource;
+  // late ApiManger apiManger;
+
+  SourceCubit({required this.sourceRepository}) : super(InitialState()) {
+    // apiManger = ApiManger();
+    // sourceRemoteDataSource = SourceRemoteDataSourceImpl(apiManger: apiManger);
+    // sourceRepository = SourceRepositoryImpl(
+    //   sourceRemoteDataSource: sourceRemoteDataSource);
+  }
   void getSource(String categoryId) async {
     try {
       emit(LoadingState());
-      var response = await ApiManger.getSource(categoryId);
+      var response = await sourceRepository.getSource(categoryId);
       if (response.status == 'ok') {
         emit(SuccessState(sourceList: response.sources));
       } else {
@@ -19,8 +28,9 @@ class SourceCubit extends Cubit<SourceState> {
       emit(ErrorState(errorMessage: e.toString()));
     }
   }
-  void changeIndex(int index){
-    selectedIndex=index;
+
+  void changeIndex(int index) {
+    selectedIndex = index;
     emit(ChangeIndexState());
   }
 }

@@ -1,10 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/api/api_manger.dart';
 import 'package:news/bloc/news/news_state.dart';
+import 'package:news/data/repository/news/repository/news_repository.dart';
 import 'package:news/model/news_response.dart';
 
 class NewsCubit extends Cubit<NewsState> {
-  NewsCubit() : super(InitialState());
+  NewsRepository newsRepository;
+  // late NewsRemoteDataSource newsRemoteDataSource;
+  // late ApiManger apiManger;
+
+  NewsCubit({required this.newsRepository}) : super(InitialState()){
+    // apiManger=ApiManger();
+    // newsRemoteDataSource=NewsRemoteDataSourceImpl(apiManger: apiManger);
+    // newsRepository=NewsRepositoryImpl(newsRemoteDataSource: newsRemoteDataSource);
+  }
 
   List<News> articles = [];
   int page = 1;
@@ -28,10 +36,10 @@ class NewsCubit extends Cubit<NewsState> {
     }
 
     try {
-      final response = await ApiManger.getNewsBySourceId(
+      final response = await newsRepository.getNewsBySourceId(
         sourceId,
-        page: page,
-        pageSize: 10,
+         page,
+        10,
       );
 
       if (response.status == 'ok') {

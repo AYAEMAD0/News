@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/bloc/source/source_cubit.dart';
+import 'package:news/di/di.dart';
 import 'package:news/features/views/home/category_details/news/news_widget.dart';
 import '../../../../../model/source_response.dart';
 import 'source_name.dart';
@@ -14,7 +15,7 @@ class SourceTab extends StatefulWidget {
 }
 
 class _SourceTabState extends State<SourceTab> {
-  SourceCubit viewModel = SourceCubit();
+  SourceCubit viewModel = SourceCubit(sourceRepository: injectSourceRepository());
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
