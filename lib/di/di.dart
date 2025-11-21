@@ -28,15 +28,11 @@ SourceRepository injectSourceRepository() {
 }
 
 SourceRemoteDataSource injectSourceRemoteDataSource() {
-  return SourceRemoteDataSourceImpl(apiManger: injectSourceApiManger());
+  return SourceRemoteDataSourceImpl(apiManger:ApiManger.getInstance());
 }
 
 SourceLocalDataSource injectSourceLocalDataSource() {
   return SourceLocalDataSourceImpl();
-}
-
-ApiManger injectSourceApiManger() {
-  return ApiManger();
 }
 
 NewsRepository injectNewsRepository() {
@@ -48,9 +44,6 @@ NewsLocalDataSource injectNewsLocalDataSource() {
 }
 
 NewsRemoteDataSource injectNewsRemoteDataSource() {
-  return NewsRemoteDataSourceImpl(apiManger: injectNewsApiManger());
+  return NewsRemoteDataSourceImpl(apiManger: ApiManger.getInstance());
 }
 
-ApiManger injectNewsApiManger() {
-  return ApiManger();
-}

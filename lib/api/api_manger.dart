@@ -6,6 +6,16 @@ import 'package:news/model/news_response.dart';
 import 'package:news/model/source_response.dart';
 
 class ApiManger {
+  //todo singleton
+  static ApiManger? _instance;
+  //todo private constructor
+  ApiManger._();
+  static ApiManger getInstance(){
+    //todo check nullable instance
+    _instance??=ApiManger._();
+    return _instance!;
+  }
+
    Future<SourceResponse> getSource(String categoryId) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiEndpoint.sourceApi, {
       "apiKey": ApiConstants.apiKey,
