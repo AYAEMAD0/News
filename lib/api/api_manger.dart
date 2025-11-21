@@ -1,20 +1,23 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news/api/api_constants.dart';
 import 'package:news/api/api_endpoint.dart';
 import 'package:news/model/news_response.dart';
 import 'package:news/model/source_response.dart';
 
+//@lazySingleton
+@singleton
 class ApiManger {
-  //todo singleton
-  static ApiManger? _instance;
-  //todo private constructor
-  ApiManger._();
-  static ApiManger getInstance(){
-    //todo check nullable instance
-    _instance??=ApiManger._();
-    return _instance!;
-  }
+  // //todo singleton
+  // static ApiManger? _instance;
+  // //todo private constructor
+  // ApiManger._();
+  // static ApiManger getInstance(){
+  //   //todo check nullable instance
+  //   _instance??=ApiManger._();
+  //   return _instance!;
+  // }
 
    Future<SourceResponse> getSource(String categoryId) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiEndpoint.sourceApi, {

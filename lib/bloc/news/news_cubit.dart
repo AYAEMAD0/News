@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/bloc/news/news_state.dart';
 import 'package:news/data/repository/news/repository/news_repository.dart';
 import 'package:news/model/news_response.dart';
-
+@injectable
 class NewsCubit extends Cubit<NewsState> {
   NewsRepository newsRepository;
   // late NewsRemoteDataSource newsRemoteDataSource;

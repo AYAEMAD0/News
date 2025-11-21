@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/bloc/source/source_state.dart';
 import 'package:news/data/repository/source/repository/source_repository.dart';
 
+@injectable
 class SourceCubit extends Cubit<SourceState> {
   //todo hold data - handle logic
   int selectedIndex = 0;

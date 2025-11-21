@@ -1,12 +1,13 @@
 //todo  source repository impl
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:news/data/repository/source/data_source/local/source_local_data_source.dart';
-
+import 'package:injectable/injectable.dart';
 import '../../../../../model/source_response.dart';
+import '../../data_source/local/source_local_data_source.dart';
 import '../../data_source/remote/source_remote_data_source.dart';
 import '../source_repository.dart';
 
+@Injectable(as: SourceRepository)
 class SourceRepositoryImpl implements SourceRepository {
   SourceRemoteDataSource sourceRemoteDataSource;
   SourceLocalDataSource sourceLocalDataSource;

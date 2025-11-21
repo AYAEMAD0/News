@@ -12,9 +12,12 @@ import 'package:news/provider/theme_provider/theme_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'core/routing/routes.dart';
+import 'di/injectable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //todo config injectable
+  configureDependencies();
   //todo path to store data(cache)
   final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentsDir.path);

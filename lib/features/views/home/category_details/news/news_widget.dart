@@ -4,7 +4,7 @@ import 'package:news/bloc/news/news_cubit.dart';
 import 'package:news/bloc/news/news_state.dart';
 import 'package:news/core/widgets/error_api_widget.dart';
 import 'package:news/core/widgets/loading_widget.dart';
-import 'package:news/di/di.dart';
+import 'package:news/di/injectable.dart';
 import 'package:news/model/source_response.dart';
 import 'widget/news_item.dart';
 
@@ -17,7 +17,8 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  NewsCubit viewModel = NewsCubit(newsRepository: injectNewsRepository());
+  //todo: NewsCubit viewModel = NewsCubit(newsRepository: injectNewsRepository());
+  NewsCubit viewModel = getIt<NewsCubit>();
   final ScrollController scrollController = ScrollController();
 
   @override
