@@ -25,7 +25,7 @@ class NewsItem extends StatelessWidget {
           horizontal: width * 0.020,
           vertical: height * 0.0093,
         ),
-        margin: EdgeInsets.symmetric(horizontal: width * 0.02),
+        margin: EdgeInsets.symmetric(horizontal: width * 0.02,vertical: height*0.009),
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).canvasColor),
           borderRadius: BorderRadius.circular(16),

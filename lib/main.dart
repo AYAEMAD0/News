@@ -1,14 +1,28 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:news/core/helper/shared_check_helper.dart';
 import 'package:news/core/theme/app_theme.dart';
 import 'package:news/features/views/home/home_view.dart';
 import 'package:news/features/views/home/search/search_view.dart';
+import 'package:news/model/news_response.dart';
+import 'package:news/model/source_response.dart';
 import 'package:news/provider/theme_provider/theme_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'core/routing/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //todo path to store data(cache)
+  final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentsDir.path);
+  //todo adapter to know datatype
+  Hive.registerAdapter(SourceResponseAdapter());
+  Hive.registerAdapter(SourcesAdapter());
+  Hive.registerAdapter(NewsResponseAdapter());
+  Hive.registerAdapter(NewsAdapter());
   await SharedCheckHelper.init();
   final bool isDark = await SharedCheckHelper.getTheme();
   runApp(
